@@ -1,3 +1,1 @@
-module.exports = {
-    prorequest: require("./lib/prorequest")
-};
+module.exports = require("./lib/prorequest");

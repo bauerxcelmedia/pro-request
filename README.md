@@ -1,24 +1,36 @@
 pro-request
 
-Introduction
+## Introduction
 ----------------
 
-This library wraps the request library with an ES6 promise
+This library wraps the request library with an ES6 promise. Current supports HTTP GET and POST.
 
-Make sure you have the necessary dependencies:
+### Parameters
+- url: The url
+- parameters: The json object to send
 
-```bash
-npm install
+Examples
+
+``` js
+
+import request from 'pro-request';
+
+request.get('http://www.bauer-media.com.au/', '').then((result) => {
+        // do something
+    })
 ```
 
-Running tests
+``` js
+
+import request from 'pro-request';
+
+request.post('services.bauer-media.com.au/', {site: 'aww'}).then((result) => {
+        // do something
+    })
+```
+
+## Running tests
 --------------
-
-Make sure you have the necessary dependencies:
-
-```bash
-npm install
-```
 
 Runs the unit tests.
 
@@ -26,7 +38,7 @@ Runs the unit tests.
 npm test
 ```
 
-Coverage
+## Coverage
 --------------
 ```bash
 npm run cover
@@ -34,12 +46,12 @@ npm run cover
 
 Generates the code coverage report in the /coverage directory. Current babel-istanbul does not work on windows.
 
-Linting
+## Linting
 --------------
 ```bash
 npm run lint
 ```
 
-Credit
+## Credit
 --------------
 https://github.com/request/request

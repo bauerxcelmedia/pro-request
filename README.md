@@ -3,11 +3,11 @@ pro-request
 ## Introduction
 ----------------
 
-This library wraps the request library with an ES6 promise. Current supports HTTP GET and POST.
+This library wraps the request library with an ES6 promise. Currently supports HTTP GET and POST.
 
 ### Parameters
 - url: The url
-- parameters: The json object to send
+- parameters: The json object to send for a POST
 
 Examples
 

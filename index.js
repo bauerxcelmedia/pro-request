@@ -1,3 +1,3 @@
 module.exports = {
-    proRequest: require("./lib/util/proRequest")
+    prorequest: require("./lib/prorequest")
 };

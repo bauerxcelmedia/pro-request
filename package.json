@@ -1,0 +1,40 @@
+{
+  "name": "@bxm/pro-request",
+  "version": "0.0.1",
+  "description": "This library wraps the request library with an ES6 promise",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha --reporter dot --ui bdd --compilers js:babel/register tests/setup.js tests/ --recursive",
+    "cover": "node node_modules/babel-istanbul/lib/cli cover --root ./src --include-all-sources --dir ./coverage --report cobertura --report html --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --ui bdd --compilers js:babel/register tests/setup.js tests/ --recursive",
+    "tdd": "node node_modules/mocha/bin/mocha -w --watch-extensions jsx --compilers js:babel/register --reporter nyan tests/setup.js tests/ --recursive",
+    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js, src/",
+    "build": "node node_modules/babel/bin/babel.js src --out-dir lib",
+    "prepublish": "npm run lint && npm run test && npm run build",
+    "release": "npm version",
+    "prerelease": "npm run build",
+    "postrelease": "npm publish && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/bauermediaau/pro-request.git"
+  },
+  "publishConfig": {
+    "scope": "@bxm",
+    "registry": "http://npm.digital.bauer-media.net.au"
+  },
+  "author": "",
+  "license": "",
+  "readme": "README.md",
+  "dependencies": {
+    "request": "^2.57.0"
+  },
+  "devDependencies": {
+    "babel": "^5.6.23",
+    "babel-eslint": "^3.1.18",
+    "babel-istanbul": "^0.2.9",
+    "chai": "^3.0.0",
+    "eslint": "^0.23.0",
+    "mocha": "^2.2.5",
+    "proxyquire": "^1.4.0"
+  }
+}

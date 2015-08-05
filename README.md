@@ -15,7 +15,7 @@ Examples
 
 import request from 'pro-request';
 
-request.get('http://www.bauer-media.com.au/', '').then((result) => {
+request.get('http://www.bauer-media.com.au/').then((result) => {
         // do something
     })
 ```

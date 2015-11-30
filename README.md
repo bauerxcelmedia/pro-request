@@ -29,6 +29,15 @@ request.post('services.bauer-media.com.au/', {site: 'aww'}).then((result) => {
     })
 ```
 
+``` js
+
+import request from 'pro-request';
+
+request.delete('services.bauer-media.com.au/', {id: '12345'}).then((result) => {
+        // do something
+    })
+```
+
 ## Running tests
 --------------
 

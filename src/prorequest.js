@@ -25,7 +25,12 @@ function post(url, parameters) {
     return makeRequest('POST', url, parameters);
 }
 
+function deleteRequest(url, parameters) {
+    return makeRequest('DELETE', url, parameters);
+}
+
 export default {
     get: get,
-    post: post
+    post: post,
+    delete: deleteRequest
 };

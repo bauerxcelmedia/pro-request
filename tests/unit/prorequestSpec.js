@@ -100,4 +100,33 @@ describe('prorequest', () => {
             });
         });
     });
+
+    describe('HTTP DELETE', () => {
+        beforeEach(() => {
+            let requestStub = (params, callback) => {
+                callback(error, response, body);
+            };
+
+            let stubs = {
+                'request': requestStub
+            };
+
+            webRequestUtil = proxyquire('../../src/prorequest', stubs);
+        });
+
+        it('should make an HTTP DELETE to a valid url', (done) => {
+            error = '';
+            response = {'statusCode': 200, 'body': {'test': 'deleted'}};
+            body = {'test': 'deleted'};
+
+            const actual = webRequestUtil.delete('http://test.com', {'test': 'deleted'});
+
+            actual.then((result) => {
+                expect(result).to.deep.equal({'test': 'deleted'});
+                done();
+            }).catch((error) => {
+                done(error);
+            });
+        });
+    });
 });

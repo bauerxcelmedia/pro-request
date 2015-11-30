@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/bauermediaau/pro-request.git"
+    "url": "https://github.com/bauerxcelmedia/pro-request.git"
   },
   "publishConfig": {
     "scope": "@bxm",

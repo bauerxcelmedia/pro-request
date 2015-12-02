@@ -1,7 +1,6 @@
 import proxyquire from 'proxyquire';
 
 describe('prorequest', () => {
-
     let webRequestUtil;
     let error;
     let response;
@@ -30,8 +29,8 @@ describe('prorequest', () => {
             actual.then((result) => {
                 expect(result).to.deep.equal({'test': 'success'});
                 done();
-            }).catch((error) => {
-                done(error);
+            }).catch((err) => {
+                done(err);
             });
         });
 
@@ -44,12 +43,12 @@ describe('prorequest', () => {
             const actual = webRequestUtil.get('http://test.com', {'test': 'test'});
 
             actual.then(() => {
-            }).catch((error) => {
+            }).catch(() => {
                 expect(error.message).to.equal('This is an error');
                 done();
                 // This second catch is to catch any errors with the expect in the above catch
-            }).catch((error) => {
-                done(error);
+            }).catch((err) => {
+                done(err);
             });
         });
 
@@ -61,13 +60,12 @@ describe('prorequest', () => {
 
             const actual = webRequestUtil.get('http://test.com', {'test': 'test'});
 
-            actual.then(() => {
-            }).catch((error) => {
-                expect(error).to.deep.equal({'statusCode': 500, 'body': {'test': 'fail'}});
+            actual.then(() => {}).catch((err) => {
+                expect(err).to.deep.equal({'statusCode': 500, 'body': {'test': 'fail'}});
                 done();
                 // This second catch is to catch any errors with the expect in the above catch
-            }).catch((error) => {
-                done(error);
+            }).catch((err) => {
+                done(err);
             });
         });
     });
@@ -115,17 +113,16 @@ describe('prorequest', () => {
         });
 
         it('should make an HTTP DELETE to a valid url', (done) => {
-            error = '';
             response = {'statusCode': 200, 'body': {'test': 'deleted'}};
             body = {'test': 'deleted'};
 
-            const actual = webRequestUtil.delete('http://test.com', {'test': 'deleted'});
+            const actual = webRequestUtil.deleteRequest('http://test.com', {'test': 'deleted'});
 
             actual.then((result) => {
                 expect(result).to.deep.equal({'test': 'deleted'});
                 done();
-            }).catch((error) => {
-                done(error);
+            }).catch((err) => {
+                done(err);
             });
         });
     });

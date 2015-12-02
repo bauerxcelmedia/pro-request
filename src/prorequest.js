@@ -30,7 +30,7 @@ function deleteRequest(url, parameters) {
 }
 
 export default {
-    get: get,
-    post: post,
-    delete: deleteRequest
+    get,
+    post,
+    deleteRequest
 };

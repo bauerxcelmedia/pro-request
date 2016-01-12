@@ -5,14 +5,14 @@ function makeRequest(method, url, parameters) {
         const options = {
             method: method,
             url: url,
-            headers: {'Content-Type': 'application/json'},
+            headers: parameters.headers || {'Content-Type': 'application/json'},
             proxy: process.env.HTTP_PROXY || '',
-            json: parameters
+            json: parameters.json
         };
         request(options, (error, response, body) => {
             if (error) return reject(error);
             if (response.statusCode < 200 || response.statusCode >= 300) return reject(response);
-            resolve(body);
+            resolve(response);
         });
     });
 }

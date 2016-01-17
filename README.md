@@ -24,7 +24,7 @@ request.get('http://www.bauer-media.com.au/').then((result) => {
 
 import request from 'pro-request';
 
-request.post('services.bauer-media.com.au/', {site: 'aww'}).then((result) => {
+request.post('services.bauer-media.com.au/', {headers: {'Content-Type': 'application/json'}, json: {site: 'aww'}}).then((result) => {
         // do something
     })
 ```
@@ -33,7 +33,7 @@ request.post('services.bauer-media.com.au/', {site: 'aww'}).then((result) => {
 
 import request from 'pro-request';
 
-request.delete('services.bauer-media.com.au/', {id: '12345'}).then((result) => {
+request.delete('services.bauer-media.com.au/', {headers: {'Content-Type': 'application/json'}, json: {id: '12345'}}).then((result) => {
         // do something
     })
 ```

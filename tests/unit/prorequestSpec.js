@@ -24,10 +24,11 @@ describe('prorequest', () => {
             response = {'statusCode': 200, 'body': {'test': 'success'}};
             body = {'test': 'success'};
 
-            const actual = webRequestUtil.get('http://test.com', {'test': 'test'});
+            const actual = webRequestUtil.get('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'test'}});
 
-            actual.then((result) => {
-                expect(result).to.deep.equal({'test': 'success'});
+            actual.then((response) => {
+                expect(response.body).to.deep.equal({'test': 'success'});
+                expect(response.statusCode).to.equal(200);
                 done();
             }).catch((err) => {
                 done(err);
@@ -40,7 +41,7 @@ describe('prorequest', () => {
             response = {'statusCode': 500, 'body': {'test': 'fail'}};
             body = {'test': 'fail'};
 
-            const actual = webRequestUtil.get('http://test.com', {'test': 'test'});
+            const actual = webRequestUtil.get('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'test'}});
 
             actual.then(() => {
             }).catch(() => {
@@ -58,7 +59,7 @@ describe('prorequest', () => {
             response = {'statusCode': 500, 'body': {'test': 'fail'}};
             body = {'test': 'fail'};
 
-            const actual = webRequestUtil.get('http://test.com', {'test': 'test'});
+            const actual = webRequestUtil.get('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'test'}});
 
             actual.then(() => {}).catch((err) => {
                 expect(err).to.deep.equal({'statusCode': 500, 'body': {'test': 'fail'}});
@@ -88,10 +89,10 @@ describe('prorequest', () => {
             response = {'statusCode': 200, 'body': {'test': 'success'}};
             body = {'test': 'success'};
 
-            const actual = webRequestUtil.post('http://test.com', {'test': 'test'});
+            const actual = webRequestUtil.post('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'test'}});
 
-            actual.then((result) => {
-                expect(result).to.deep.equal({'test': 'success'});
+            actual.then((response) => {
+                expect(response.body).to.deep.equal({'test': 'success'});
                 done();
             }).catch((error) => {
                 done(error);
@@ -116,10 +117,10 @@ describe('prorequest', () => {
             response = {'statusCode': 200, 'body': {'test': 'deleted'}};
             body = {'test': 'deleted'};
 
-            const actual = webRequestUtil.deleteRequest('http://test.com', {'test': 'deleted'});
+            const actual = webRequestUtil.deleteRequest('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'deleted'}});
 
-            actual.then((result) => {
-                expect(result).to.deep.equal({'test': 'deleted'});
+            actual.then((response) => {
+                expect(response.body).to.deep.equal({'test': 'deleted'});
                 done();
             }).catch((err) => {
                 done(err);

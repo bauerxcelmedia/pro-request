@@ -9,7 +9,7 @@ function makeRequest(method, url, parameters) {
             proxy: process.env.HTTP_PROXY || '',
             json: parameters.json
         };
-        request(options, (error, response, body) => {
+        request(options, (error, response) => {
             if (error) return reject(error);
             if (response.statusCode < 200 || response.statusCode >= 300) return reject(response);
             resolve(response);

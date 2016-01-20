@@ -2,12 +2,20 @@ import request from 'request';
 
 function makeRequest(method, url, parameters) {
     return new Promise((resolve, reject) => {
+        let headers = {'Content-Type': 'application/json'};
+        let json;
+
+        if (parameters) {
+            headers = parameters.headers;
+            json = parameters.json;
+        }
+
         const options = {
             method: method,
             url: url,
-            headers: parameters.headers || {'Content-Type': 'application/json'},
+            headers: headers,
             proxy: process.env.HTTP_PROXY || '',
-            json: parameters.json
+            json: json
         };
         request(options, (error, response) => {
             if (error) return reject(error);

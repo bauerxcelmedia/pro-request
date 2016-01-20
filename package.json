@@ -1,6 +1,6 @@
 {
   "name": "@bxm/pro-request",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This library wraps the request library with an ES6 promise",
   "main": "index.js",
   "scripts": {

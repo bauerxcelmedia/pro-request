@@ -100,6 +100,35 @@ describe('prorequest', () => {
         });
     });
 
+    describe('HTTP PUT', () => {
+        beforeEach(() => {
+            let requestStub = (params, callback) => {
+                callback(error, response, body);
+            };
+
+            let stubs = {
+                'request': requestStub
+            };
+
+            webRequestUtil = proxyquire('../../src/prorequest', stubs);
+        });
+
+        it('should make a request to a valid url and return the result', (done) => {
+            error = '';
+            response = {'statusCode': 200, 'body': {'test': 'success'}};
+            body = {'test': 'success'};
+
+            const actual = webRequestUtil.put('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'test'}});
+
+            actual.then((response) => {
+                expect(response.body).to.deep.equal({'test': 'success'});
+                done();
+            }).catch((error) => {
+                done(error);
+            });
+        });
+    });
+
     describe('HTTP DELETE', () => {
         beforeEach(() => {
             let requestStub = (params, callback) => {

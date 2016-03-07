@@ -33,6 +33,10 @@ function post(url, parameters) {
     return makeRequest('POST', url, parameters);
 }
 
+function put(url, parameters) {
+    return makeRequest('PUT', url, parameters);
+}
+
 function deleteRequest(url, parameters) {
     return makeRequest('DELETE', url, parameters);
 }
@@ -40,5 +44,6 @@ function deleteRequest(url, parameters) {
 export default {
     get,
     post,
+    put,
     deleteRequest
 };

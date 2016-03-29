@@ -2,9 +2,9 @@ import request from 'request';
 import ExtendableError from 'es6-error';
 
 class RequestError extends ExtendableError {
-    constructor(requestId, method, url, json, statusCode, response) {
+    constructor(method, url, json, statusCode, response) {
         super('Http Request Error');
-        Object.assign(this, {requestId, method, url, json, statusCode, response});
+        Object.assign(this, {method, url, json, statusCode, response});
     }
 }
 
@@ -23,7 +23,7 @@ function makeRequest(method, url, parameters) {
         request(options, (error, response, body) => {
             if (error) return reject(error);
             if (response.statusCode < 200 || response.statusCode >= 300) {
-                return reject(new RequestError(headers.id, method, url, json, response.statusCode, body));
+                return reject(new RequestError(method, url, json, response.statusCode, body));
             }
             resolve(response);
         });

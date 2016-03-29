@@ -62,7 +62,8 @@ describe('prorequest', () => {
             const actual = webRequestUtil.get('http://test.com', {'headers': {'Content-Type': 'application/json'}, 'json': {'test': 'test'}});
 
             actual.then(() => {}).catch((err) => {
-                expect(err.message).to.equal(`status: 500, url: http://test.com, body: ${JSON.stringify(body)}`);
+                expect(err.statusCode).to.equal(500);
+                expect(err.response).to.equal(body);
                 done();
                 // This second catch is to catch any errors with the expect in the above catch
             }).catch((err) => {

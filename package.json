@@ -26,7 +26,7 @@
   "license": "",
   "readme": "README.md",
   "dependencies": {
-    "lodash.isstring": "^4.0.1",
+    "es6-error": "^2.1.0",
     "request": "^2.57.0"
   },
   "devDependencies": {

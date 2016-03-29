@@ -1,4 +1,12 @@
 import request from 'request';
+import ExtendableError from 'es6-error';
+
+class RequestError extends ExtendableError {
+    constructor(method, url, json, statusCode, response) {
+        super('Http Request Error');
+        Object.assign(this, {method, url, json, statusCode, response});
+    }
+}
 
 function makeRequest(method, url, parameters) {
     return new Promise((resolve, reject) => {
@@ -10,16 +18,13 @@ function makeRequest(method, url, parameters) {
             json = parameters.json;
         }
 
-        const options = {
-            method: method,
-            url: url,
-            headers: headers,
-            proxy: process.env.HTTP_PROXY || '',
-            json: json
-        };
-        request(options, (error, response) => {
+        const options = {method, url, headers, proxy: process.env.HTTP_PROXY || '', json};
+
+        request(options, (error, response, body) => {
             if (error) return reject(error);
-            if (response.statusCode < 200 || response.statusCode >= 300) return reject(response);
+            if (response.statusCode < 200 || response.statusCode >= 300) {
+                return reject(new RequestError(method, url, json, response.statusCode, body));
+            }
             resolve(response);
         });
     });

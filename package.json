@@ -1,6 +1,6 @@
 {
   "name": "@bxm/pro-request",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "This library wraps the request library with an ES6 promise",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,7 @@
   "license": "",
   "readme": "README.md",
   "dependencies": {
+    "es6-error": "^2.1.0",
     "request": "^2.57.0"
   },
   "devDependencies": {

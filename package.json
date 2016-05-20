@@ -15,7 +15,6 @@
     "url": "https://github.com/bauerxcelmedia/pro-request.git"
   },
   "license": "MIT",
-  "readme": "README.md",
   "dependencies": {
     "es6-error": "^3.0.0",
     "request": "^2.72.0"

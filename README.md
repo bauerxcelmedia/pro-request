@@ -1,66 +1,40 @@
-pro-request
+# pro-request
 
-## Introduction
-----------------
+Wraps the Request library with a light weight ES6 promise.
 
-This library wraps the request library with an ES6 promise. Currently supports HTTP GET and POST.
+## Parameters
 
-### Parameters
-- url: The url
-- parameters: The json object to send for a POST
+- `url`: the url
+- `parameters`: the json object to send as parameters
 
-Examples
+## Examples
 
-``` js
-
+```js
 import request from 'pro-request';
 
-request.get('http://www.bauer-media.com.au/').then((result) => {
-        // do something
-    })
+request.get('http://web-service/').then((res) => {
+    // handle
+});
+
+request.post('http://web-service/', {
+	headers: { 'Content-Type': 'application/json' },
+	json: { id: '1', title: 'thing to do',  }
+}).then((res) => {
+    // handle
+});
+
+request.delete('http://web-service/', {
+	headers: { 'Content-Type': 'application/json' },
+	json: { id: '1' }
+}).then((res) => {
+    // handle
+});
 ```
 
-``` js
+## Quality
 
-import request from 'pro-request';
-
-request.post('services.bauer-media.com.au/', {headers: {'Content-Type': 'application/json'}, json: {site: 'aww'}}).then((result) => {
-        // do something
-    })
-```
-
-``` js
-
-import request from 'pro-request';
-
-request.delete('services.bauer-media.com.au/', {headers: {'Content-Type': 'application/json'}, json: {id: '12345'}}).then((result) => {
-        // do something
-    })
-```
-
-## Running tests
---------------
-
-Runs the unit tests.
-
-```bash
-npm test
-```
-
-## Coverage
---------------
-```bash
-npm run cover
-```
-
-Generates the code coverage report in the /coverage directory. Current babel-istanbul does not work on windows.
-
-## Linting
---------------
-```bash
-npm run lint
-```
-
-## Credit
---------------
-https://github.com/request/request
+- to contribute, fork, branch and submit pull requests for review
+- use Node 6
+- use ES 6
+- `npm test` and maintain 100% coverage
+- `npm run lint` and maintain 0 errors (uses AirBnB JavaScript Style Guide)

@@ -1,6 +1,6 @@
 {
   "name": "pro-request",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Wraps the Request library with a light weight ES6 promise.",
   "main": "index.js",
   "scripts": {

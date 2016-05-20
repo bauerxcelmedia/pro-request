@@ -1,15 +1,15 @@
 {
   "name": "pro-request",
   "version": "2.2.0",
-  "description": "This library wraps the request library with an ES6 promise",
+  "description": "Wraps the Request library with a light weight ES6 promise.",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --reporter dot --ui bdd --compilers js:babel/register tests/setup.js tests/ --recursive",
-    "cover": "node node_modules/babel-istanbul/lib/cli cover --root ./src --include-all-sources --dir ./coverage --report cobertura --report html --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --ui bdd --compilers js:babel/register tests/setup.js tests/ --recursive",
-    "tdd": "node node_modules/mocha/bin/mocha -w --watch-extensions jsx --compilers js:babel/register --reporter nyan tests/setup.js tests/ --recursive",
-    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js, src/",
-    "build": "node node_modules/babel/bin/babel.js src --out-dir lib",
-    "prepublish": "npm run lint && npm run test && npm run build",
+    "test": "node ./node_modules/babel-cli/bin/babel-node.js ./node_modules/babel-istanbul/lib/cli cover --root ./src --include-all-sources --report html ./node_modules/mocha/bin/_mocha -- --recursive --check-leaks",
+    "tdd": "mocha --require babel-polyfill --require babel-register --recursive --check-leaks --watch",
+    "lint": "node ./node_modules/eslint/bin/eslint.js src/ test/",
+    "prebuild": "rimraf lib/ coverage/",
+    "build": "node ./node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "prepublish": "npm run lint && npm test && npm run build",
     "release": "npm version",
     "prerelease": "npm run build",
     "postrelease": "npm publish && git push --follow-tags"
@@ -21,16 +21,22 @@
   "license": "MIT",
   "readme": "README.md",
   "dependencies": {
-    "es6-error": "^2.1.0",
-    "request": "^2.57.0"
+    "es6-error": "^3.0.0",
+    "request": "^2.72.0"
   },
   "devDependencies": {
-    "babel": "^5.6.23",
-    "babel-eslint": "5.0.0-beta9",
-    "babel-istanbul": "^0.2.9",
-    "chai": "^3.0.0",
-    "eslint": "^0.23.0",
-    "mocha": "^2.2.5",
-    "proxyquire": "^1.4.0"
+    "babel-cli": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-istanbul": "^0.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1",
+    "mocha": "^2.4.5",
+    "proxyquire": "^1.7.9",
+    "rimraf": "^2.5.2"
   }
 }

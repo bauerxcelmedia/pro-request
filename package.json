@@ -3,6 +3,12 @@
   "version": "2.2.3",
   "description": "Wraps the Request library with a light weight ES6 promise.",
   "main": "index.js",
+  "keywords": [
+    "request",
+    "promise",
+    "es6",
+    "http"
+  ],
   "scripts": {
     "test": "node ./node_modules/babel-cli/bin/babel-node.js ./node_modules/babel-istanbul/lib/cli cover --root ./src --include-all-sources --report html ./node_modules/mocha/bin/_mocha -- --recursive --check-leaks",
     "tdd": "mocha --require babel-polyfill --require babel-register --recursive --check-leaks --watch",

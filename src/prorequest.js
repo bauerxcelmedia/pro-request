@@ -18,7 +18,7 @@ function makeRequest(method, url, parameters) {
             json = parameters.json;
         }
 
-        const options = { method, url, headers, proxy: process.env.HTTP_PROXY || '', json };
+        const options = { method, url, headers, json };
 
         request(options, (error, response, body) => {
             if (error) return reject(error);

@@ -156,4 +156,29 @@ describe('prorequest', () => {
             });
         });
     });
+
+    describe('Request options passed', () => {
+        it('should pass through to request module', (done) => {
+            error = '';
+            response = { statusCode: 200, body: { test: 'success' } };
+            body = { test: 'success' };
+            let exposedParams = null;
+            const requestStub = (params, callback) => {
+                exposedParams = params;
+                callback(error, response, body);
+            };
+            const stubs = {
+                request: requestStub
+            };
+            webRequestUtil = proxyquire('../../src/prorequest', stubs).default;
+            const actual = webRequestUtil.get('http://test.com', { family: 4, json: { test: 'test' } });
+
+            actual.then(() => {
+                expect(exposedParams.family).to.equal(4);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+    });
 });

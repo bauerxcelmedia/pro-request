@@ -8,9 +8,14 @@ class RequestError extends ExtendableError {
     }
 }
 
-function makeRequest(method, url, { headers = { 'Content-Type': 'application/json' }, ...parameters }) {
+const defaultHeaders = {
+    'Content-Type': 'application/json'
+};
+
+function makeRequest(method, url, { headers = defaultHeaders, ...params } = { headers: defaultHeaders }) {
     return new Promise((resolve, reject) => {
-        const options = { method, url, headers, ...parameters };
+        const proxy = process.env.HTTP_PROXY ? { proxy: process.env.HTTP_PROXY } : {};
+        const options = { method, url, ...proxy, ...headers, ...params };
         request(options, (error, response, body) => {
             if (error) return reject(error);
             if (response.statusCode < 200 || response.statusCode >= 300) {

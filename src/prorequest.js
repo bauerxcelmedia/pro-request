@@ -12,14 +12,22 @@ const defaultHeaders = {
     'Content-Type': 'application/json'
 };
 
-function makeRequest(method, url, { headers = defaultHeaders, ...params } = { headers: defaultHeaders }) {
+function makeRequest(
+    method,
+    url,
+    { headers = defaultHeaders, ...params } = { headers: defaultHeaders }
+) {
     return new Promise((resolve, reject) => {
-        const proxy = process.env.HTTP_PROXY ? { proxy: process.env.HTTP_PROXY } : {};
+        const proxy = process.env.HTTP_PROXY
+            ? { proxy: process.env.HTTP_PROXY }
+            : {};
         const options = { method, url, ...proxy, headers, ...params };
         request(options, (error, response, body) => {
             if (error) return reject(error);
             if (response.statusCode < 200 || response.statusCode >= 300) {
-                return reject(new RequestError(options, response.statusCode, body));
+                return reject(
+                    new RequestError(options, response.statusCode, body)
+                );
             }
             return resolve(response);
         });

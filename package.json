@@ -1,6 +1,6 @@
 {
   "name": "pro-request",
-  "version": "2.4.1",
+  "version": "2.7.0",
   "description": "Wraps the Request library with a light weight ES6 promise.",
   "main": "index.js",
   "keywords": [
@@ -10,11 +10,16 @@
     "http"
   ],
   "scripts": {
+    "clean": "node ./node_modules/rimraf/bin lib/",
     "test": "babel-node ./node_modules/babel-istanbul/lib/cli cover --root ./src --include-all-sources --report html ./node_modules/mocha/bin/_mocha -- --recursive --check-leaks",
     "tdd": "mocha --require babel-polyfill --require babel-register --recursive --check-leaks --watch",
     "lint": "eslint src/ test/",
     "prebuild": "rimraf lib/ coverage/",
     "build": "babel src --out-dir lib",
+    "prepublish": "npm run clean && npm run test",
+    "release": "npm version",
+    "prerelease": "npm run build",
+    "postrelease": "npm publish && git push --follow-tags",
     "prettier": "./node_modules/.bin/prettier \"{src,test}/**/*.js\" --write --single-quote --tab-width 4"
   },
   "repository": {
